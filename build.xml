@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<project name="TaigaServlet" default="war" basedir=".">
+  <!--
+  *****************************************************************
+  * global properties
+  *****************************************************************
+  -->
+  <property environment="env"/>
+  <!--
+  *****************************************************************
+  * project properties
+  *****************************************************************
+  -->
+  <property name="version" value="1.0.5"/>
+  <property name="build" location="${basedir}/build"/>
+  <property name="temp" location="${build}/temp"/>
+  <property name="classes" location="${build}/classes"/>
+  <property name="install" location="${build}/install"/>
+  <property name="source" location="src/main/java"/>
+  <property name="web-inf" location="${basedir}/WebContent/WEB-INF"/>
+  <property name="lib" location="${basedir}/lib"/>
+  <!--
+  *****************************************************************
+  * external taskdefinitions
+  *****************************************************************
+  -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+  <!--
+  *****************************************************************
+  * logging
+  *****************************************************************
+  -->
+  <record name="${basedir}/build.log"/>
+  <!--
+  *****************************************************************
+  * PUBLIC TASKS
+  *****************************************************************
+  -->
+  <target name="clean.start">
+    <delete dir="${temp}"/>
+    <delete dir="${install}"/>
+  </target>
+
+  <target name="clean.stop">
+    <delete dir="${temp}"/>
+  </target>
+  
+  <target name="compile">
+    <delete dir="${classes}"/>
+    <mkdir dir="${classes}"/>
+    <path id="java.classpath">
+      <fileset dir="${lib}">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+  
+    <javac srcdir="${source}" destdir="${classes}" classpathref="java.classpath" debug="on" deprecation="on" source="1.8" target="1.8" encoding="ISO-8859-1">
+    </javac>
+  </target>
+  
+  <target name="jar" depends="compile">
+    <mkdir dir="${temp}"/>
+    <tstamp>
+      <format property="version.time" pattern="dd.MM.yyyy hh:mm" locale="de,DE" timezone="GMT+1"/>
+    </tstamp>
+    <jar destfile="${temp}/taigaservlet_v${version}.jar" basedir="${classes}">
+      <manifest>
+        <attribute name="Implementation-Version" value="${version} ${version.time}"/>
+        <attribute name="Implementation-Title" value="TaigaServlet"/>
+        <attribute name="Implementation-Vendor" value="Industrie Informatik GesmbH"/>
+        <attribute name="Permissions" value="all-permissions"/>
+        <attribute name="Codebase" value="*"/>
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="war" depends="jar">
+    <mkdir dir="${install}"/>
+    <zip destfile="${install}/taigaservlet_v${version}.war" encoding="utf8">
+      <zipfileset dir="${lib}" prefix="WEB-INF/lib">
+        <include name="*.jar"/>
+        <exclude name="*servlet-api*.*"/>
+      </zipfileset>
+      <zipfileset dir="${temp}" prefix="WEB-INF/lib">
+        <include name="taigaservlet_v${version}.jar"/>
+      </zipfileset>
+      <zipfileset dir="${web-inf}" prefix="WEB-INF">
+        <include name="*.xml"/>
+      </zipfileset>
+    </zip>
+  </target>
+  
+  <target name="test">
+  </target>
+</project>

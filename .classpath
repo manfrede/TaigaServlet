@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/start/java"/>
+	<classpathentry kind="src" path="src/main/java"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="jetty/jetty-all-8.1.9.jar" sourcepath="jetty/jetty-all-8.1.9-src.zip"/>
+	<classpathentry kind="lib" path="lib/javax.servlet-api-3.0.jar" sourcepath="lib/javax.servlet-api-3.0-src.zip"/>
+	<classpathentry kind="lib" path="lib/slf4j-api-1.7.21.jar" sourcepath="lib/slf4j-api-1.7.21-src.zip"/>
+	<classpathentry kind="lib" path="lib/slf4j-jdk14-1.7.21.jar" sourcepath="lib/slf4j-jdk14-1.7.21-src.zip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+  <display-name>TaigaServlet</display-name>
+
+  <servlet>
+    <servlet-name>TaigaServlet</servlet-name>
+    <servlet-class>com.industrieinformatik.taiga.TaigaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TaigaServlet</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+  
+  <context-param>
+    <param-name>taigaBaseUrl</param-name>
+    <param-value>http://taigaserver/api/v1</param-value>
+  </context-param>
+  <context-param>
+    <param-name>authToken</param-name>
+    <param-value>FA4E2BCA1DE24B55AB</param-value>
+  </context-param>
+
+</web-app>  

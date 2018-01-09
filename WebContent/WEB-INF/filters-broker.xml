@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<config>
+  <contentFilters>
+    <contentFilter mimeTypeMatch="text/html" uriMatch=".*">
+      <replacements>
+        <replacement from="http://ias1:7001/CronetJVX/" to="/static/"/>
+        <replacement from="http://ias1/CronetJVX/" to="/static/"/>
+        <replacement from="http://ias1.industrieinformatik.com/CronetJVX/" to="/static/"/>
+      </replacements>
+    </contentFilter>
+  </contentFilters>
+</config>
